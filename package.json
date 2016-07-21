@@ -1,0 +1,50 @@
+{
+  "name": "testing-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start-dev": "nodemon src/index --exec ./node_modules/.bin/babel-node",
+    "test-int": "NODE_ENV=test ./node_modules/.bin/mocha test/integration/*.js --compilers js:babel-register",
+    "test-unit": "NODE_ENV=test ./node_modules/.bin/mocha test/unit/**/*.js --compilers js:babel-register",
+    "coverage": "./node_modules/.bin/nyc --reporter=lcov --reporter=cobertura npm run test-unit"
+  },
+  "author": "nsaleem <nsaleem@fandango.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "ajv": "^4.1.7",
+    "babel-cli": "^6.11.4",
+    "babel-plugin-istanbul": "^1.0.3",
+    "babel-plugin-rewire": "^1.0.0-rc-4",
+    "babel-preset-es2015": "^6.9.0",
+    "chai": "^3.5.0",
+    "faker": "^3.1.0",
+    "mocha": "^2.5.3",
+    "nock": "^8.0.0",
+    "nyc": "^7.0.0",
+    "sinon": "^1.17.4",
+    "sinon-as-promised": "^3.0.1",
+    "supertest": "^1.2.0"
+  },
+  "dependencies": {
+    "express": "^4.14.0",
+    "request-promise": "^4.0.2"
+  },
+  "babel": {
+    "presets": [
+      "es2015"
+    ],
+    "env": {
+      "test": {
+        "plugins": [
+          "rewire",
+          "istanbul"
+        ]
+      }
+    }
+  },
+  "nyc": {
+    "sourceMap": false,
+    "instrument": false
+  }
+}
