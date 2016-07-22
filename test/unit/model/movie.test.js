@@ -2,6 +2,7 @@ import chai from 'chai';
 import sinon from 'sinon';
 import 'sinon-as-promised';
 import movie from '../../../src/resource/model/movie';
+import { InvalidMovie } from '../../../src/resource/model/errors';
 
 chai.should();
 
@@ -36,7 +37,8 @@ describe('movie model', function () {
       movie(movieId)
         .then(() => done(new Error('this test should throw!')))
         .catch(err => {
-          err.constructor.name.should.equal('InvalidMovie');
+          // err.constructor.name.should.equal('InvalidMovie');
+          err.should.be.instanceof(InvalidMovie);
           done();
         });
     });
