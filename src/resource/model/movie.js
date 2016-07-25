@@ -3,7 +3,8 @@ import { InvalidMovie } from './errors';
 
 function formatServiceResponse(data) {
   return {
-    movieId: data.id
+    movieId: data.id,
+    title: data.title
   };
 };
 
